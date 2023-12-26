@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style2.css" />
+    <title>Vücut Kütle İndeksi Hesaplama</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit"
+          >Sağlıklı Yaşam İçin Her Şey</a
+        >
+      </div>
+      <div class="login-options">
+        <a href="index.html">Anasayfa</a>
+        <a href="indeksHesap.html">Vücut Kütle İndeksi Hesaplama</a>
+        <a href="hesapSonuc.html">Hesaplama Sonuçları</a>
+        <a href="iletişim.html">İletişim</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Vücut Kütle İndeksi Hesaplama</h2>
+      <form onsubmit="hesaplaVKI(); return false;">
+        <input
+          type="text"
+          name="boyUzunlugu"
+          id="boy-uzunlugu"
+          placeholder="Boy Uzunluğu (cm)"
+          required
+        />
+        <input
+          type="text"
+          name="vucutAgirligi"
+          id="vucut-agirligi"
+          placeholder="Vücut Ağırlığı (kg)"
+          required
+        />
+        <input type="text" name="yas" id="yas" placeholder="Yaş" required />
+        <select name="cinsiyet" id="cinsiyet" required>
+          <option value="erkek">Erkek</option>
+          <option value="kadin">Kadın</option>
+        </select>
+        <button type="submit">Hesapla</button>
+      </form>
+
+      <!-- Sonuçları göstermek için bir bölüm ekle -->
+      <div id="sonuc">
+        <h3>Vücut Kitle İndeksi Sonucu:</h3>
+        <p id="vkiSonuc"></p>
+      </div>
+    </section>
+
+    <script>
+      function hesaplaVKI() {
+        // Formdan gerekli bilgileri al
+        let boyUzunlugu = parseFloat(
+          document.getElementById('boy-uzunlugu').value
+        )
+        let vucutAgirligi = parseFloat(
+          document.getElementById('vucut-agirligi').value
+        )
+        let yas = parseInt(document.getElementById('yas').value)
+        let cinsiyet = document.getElementById('cinsiyet').value
+
+        // Vücut Kitle İndeksini Hesapla
+        let vki = vucutAgirligi / ((boyUzunlugu / 100) * (boyUzunlugu / 100))
+
+        // Sonucu ekrana yazdır
+        let formattedVki = vki.toFixed(2) // Ondalıklı sayıyı iki hane ile sınırla
+        document.getElementById('vkiSonuc').innerText =
+          'Vücut Kitle İndeksi: ' + formattedVki
+
+        // Sonucu göstermek için sonuc div'ini göster
+        document.getElementById('sonuc').style.display = 'block'
+      }
+    </script>
+  </body>
+</html>
